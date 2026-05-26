@@ -18,6 +18,10 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(rateLimiter);
 
+app.get("/health", (req, res) => {
+    res.status(200).json({ status: "UP", message: "Server is running smoothly" });
+});
+
 // Routes
 app.use("/api/v1/users", usersRouter);
 app.use("/api/v1/posts", postsRouter);
